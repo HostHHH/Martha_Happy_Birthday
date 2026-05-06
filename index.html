@@ -1,185 +1,144 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>З Днем Народження, Марто!</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-            flex-direction: column;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Для Марти</title>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+}
+.card {
+    background: rgba(255, 255, 255, 0.92);
+    padding: 3rem;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 420px;
+    z-index: 100;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+h1 {
+    color: #d81b60;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+}
+p {
+    color: #444;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+}
+button {
+    background: #d81b60;
+    color: white;
+    border: none;
+    padding: 16px 36px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(216, 27, 96, 0.3);
+}
+button:hover {
+    background: #ad1457;
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(216, 27, 96, 0.4);
+}
+.float-element {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+}
+.heart {
+    color: #ff4081;
+    font-size: 20px;
+    animation: floatUp 4s linear forwards;
+}
+.cat {
+    width: 90px;
+    height: 90px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: floatUpRotated 6s linear forwards;
+}
 
-        .card {
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            padding: 40px;
-            text-align: center;
-            z-index: 10;
-            max-width: 80%;
-            transition: all 0.5s ease;
-        }
+/* --- ПОМИЛКА БУЛА ТУТ --- */
+/* Я ДОДАВ Step 50% { opacity: 1; }, щоб елементи ставали видимими */
 
-        h1 {
-            color: #d81b60;
-            margin-bottom: 20px;
-            font-size: 2.5em;
-        }
-
-        p {
-            color: #4a148c;
-            font-size: 1.2em;
-            line-height: 1.6;
-            display: none; /* Приховано до кліку */
-        }
-
-        button {
-            background-color: #ff4081;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 64, 129, 0.4);
-            transition: transform 0.2s, background-color 0.2s;
-            margin-top: 20px;
-        }
-
-        button:hover {
-            background-color: #f50057;
-            transform: scale(1.05);
-        }
-
-        /* Стилі для контейнера з фотографіями */
-        .photo-gallery {
-            display: none; /* Приховано до кліку */
-            margin-top: 30px;
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .photo-gallery img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 15px;
-            border: 3px solid white;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .photo-gallery img:hover {
-            transform: scale(1.1);
-        }
-
-        /* Анімації */
-        .heart, .cat {
-            position: absolute;
-            bottom: -50px;
-            opacity: 0.8;
-            animation: floatUp linear forwards;
-        }
-
-        .heart {
-            color: red;
-            font-size: 24px;
-        }
-
-        .cat {
-            font-size: 30px; /* Емодзі кота */
-        }
-
-        @keyframes floatUp {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
-        }
-    </style>
+@keyframes floatUp {
+    0% { transform: translateY(110vh) scale(0.5); opacity: 0; }
+    50% { opacity: 1; } /* Елемент стає видимим на середині шляху */
+    100% { transform: translateY(-20vh) scale(1.5); opacity: 0; }
+}
+@keyframes floatUpRotated {
+    0% { transform: translateY(110vh) rotate(0deg) scale(0.5); opacity: 0; }
+    50% { opacity: 1; } /* Елемент стає видимим на середині шляху */
+    100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); opacity: 0; }
+}
+</style>
 </head>
 <body>
 
-    <div class="card" id="greetingCard">
-        <h1>Для Марти! 🎉</h1>
-        <button id="surpriseBtn">Натисни сюди!</button>
-        
-        <p id="message">
-            З Днем Народження!<br>
-            Нехай кожен день буде наповнений радістю, сміхом та яскравими моментами. Бажаю здійснення всіх мрій! 🌟
-        </p>
+<div class="card" id="mainCard">
+    <h1>Для Марти ✨</h1>
+    <button id="actionBtn">Натисни, щоб побачити магію</button>
+    <p id="greetingText">Ти неймовірна людина, яка робить світ яскравішим! Твій хлопець дуже тебе цінує, і ми всі бажаємо тобі безмежного щастя, натхнення та здійснення найзаповітніших мрій. Залишайся такою ж чудовою!</p>
+</div>
 
-        <!-- Блок з фотографіями -->
-        <div class="photo-gallery" id="gallery" style="display: none;">
-            <!-- Встав свої локальні зображення нижче. 
-                 Спочатку завантаж картинки в папку на GitHub і вкажи їхні назви замість img1.jpg і т.д. -->
-            <img src="img1.jpg" alt="Фото 1"> 
-            <img src="img2.jpg" alt="Фото 2">
-            <img src="img3.jpg" alt="Фото 3">
-        </div>
-    </div>
+<script>
+const actionBtn = document.getElementById('actionBtn');
+const greetingText = document.getElementById('greetingText');
 
-    <script>
-        const btn = document.getElementById('surpriseBtn');
-        const message = document.getElementById('message');
-        const gallery = document.getElementById('gallery');
-        let animationInterval;
+const catImages = [
+    'https://getshared.com/dashboard/api/files/8aa7d7ba-4964-11f1-8264-ac1f6b763f30/stream?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQ1NjI2LCJlbWFpbCI6Im9yZXN0bWF0c2V2eWNoQGdtYWlsLmNvbSIsImlhdCI6MTc3ODA4MzE1MCwiZXhwIjoxNzgwNjc1MTUwfQ.YPvZ3SA8_Ru0LH55guOuA6l6y2388QNlVldruCwz9v4&t=1778083170257',
+    'https://getshared.com/dashboard/api/files/1b19e80e-4966-11f1-8264-ac1f6b763f30/stream?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQ1NjI2LCJlbWFpbCI6Im9yZXN0bWF0c2V2eWNoQGdtYWlsLmNvbSIsImlhdCI6MTc3ODA4MzE1MCwiZXhwIjoxNzgwNjc1MTUwfQ.YPvZ3SA8_Ru0LH55guOuA6l6y2388QNlVldruCwz9v4&t=1778083864811',
+    'https://getshared.com/dashboard/api/files/0f58cc75-4966-11f1-8264-ac1f6b763f30/stream?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQ1NjI2LCJlbWFpbCI6Im9yZXN0bWF0c2V2eWNoQGdtYWlsLmNvbSIsImlhdCI6MTc3ODA4MzE1MCwiZXhwIjoxNzgwNjc1MTUwfQ.YPvZ3SA8_Ru0LH55guOuA6l6y2388QNlVldruCwz9v4&t=1778083846946',
+    'https://getshared.com/dashboard/api/files/0f3f3c4a-4966-11f1-8264-ac1f6b763f30/stream?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQ1NjI2LCJlbWFpbCI6Im9yZXN0bWF0c2V2eWNoQGdtYWlsLmNvbSIsImlhdCI6MTc3ODA4MzE1MCwiZXhwIjoxNzgwNjc1MTUwfQ.YPvZ3SA8_Ru0LH55guOuA6l6y2388QNlVldruCwz9v4&t=1778083835622'
+];
 
-        btn.addEventListener('click', () => {
-            btn.style.display = 'none'; // Ховаємо кнопку
-            message.style.display = 'block'; // Показуємо текст
-            gallery.style.display = 'flex'; // Показуємо галерею
-            
-            // Запускаємо генерацію елементів
-            animationInterval = setInterval(createFloatingElement, 300);
-            
-            // Зупиняємо генерацію через 15 секунд, щоб не перевантажувати браузер
-            setTimeout(() => {
-                clearInterval(animationInterval);
-            }, 15000);
-        });
+const spawnElement = (type) => {
+    const el = document.createElement('div');
+    el.className = `float-element ${type}`;
+    
+    if (type === 'heart') {
+        el.innerText = '❤️';
+    } else if (type === 'cat') {
+        const randomImg = catImages[Math.floor(Math.random() * catImages.length)];
+        el.style.backgroundImage = `url('${randomImg}')`;
+    }
+    
+    el.style.left = `${Math.random() * 100}vw`;
+    const duration = type === 'cat' ? Math.random() * 3 + 5 : Math.random() * 2 + 3;
+    el.style.animationDuration = `${duration}s`;
+    
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), duration * 1000);
+};
 
-        function createFloatingElement() {
-            const el = document.createElement('div');
-            
-            // Випадково вибираємо, чи це буде серце, чи кіт
-            if (Math.random() > 0.5) {
-                el.classList.add('heart');
-                el.innerHTML = '❤️';
-            } else {
-                el.classList.add('cat');
-                el.innerHTML = '🐱';
-            }
+actionBtn.addEventListener('click', () => {
+    actionBtn.style.display = 'none';
+    greetingText.style.display = 'block';
+    setTimeout(() => {
+        greetingText.style.opacity = '1';
+    }, 100);
 
-            // Випадкова позиція по горизонталі
-            el.style.left = Math.random() * 100 + 'vw';
-            
-            // Випадковий розмір
-            el.style.transform = `scale(${Math.random() * 1.5 + 0.5})`;
-            
-            // Випадкова тривалість анімації (від 3 до 6 секунд)
-            const duration = Math.random() * 3 + 3;
-            el.style.animationDuration = duration + 's';
+    setInterval(() => spawnElement('heart'), 400);
+    setInterval(() => spawnElement('cat'), 1000);
+});
+</script>
 
-            document.body.appendChild(el);
-
-            // Видаляємо елемент після завершення анімації
-            setTimeout(() => {
-                el.remove();
-            }, duration * 1000);
-        }
-    </script>
 </body>
 </html>
